@@ -1,11 +1,11 @@
 <script setup>
-import MainNav from '@/components/MainNav.vue'
+import MainWindow from '@/components/MainNav.vue'
 </script>
 
 <template>
   <main>
-    <h1 class="hidden">HackerNews Main</h1>
+    <h1 class="hidden">HackerNews Tags</h1>
     <img src="/logo.png" alt="HackerNews logo" class="w-[160px]" />
-    <MainNav />
+    <MainWindow />
   </main>
 </template>
