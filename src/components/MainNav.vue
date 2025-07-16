@@ -2,6 +2,14 @@
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
+
+const navLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Trends', path: '/trends' },
+  { name: 'Tags', path: '/tags' },
+  { name: 'Posts', path: '/posts' },
+  { name: 'About', path: '/about' },
+]
 </script>
 
 <template>
@@ -21,13 +29,3 @@ const route = useRoute()
     </ul>
   </nav>
 </template>
-
-<script>
-const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Trends', path: '/trends' },
-  { name: 'Tags', path: '/tags' },
-  { name: 'Posts', path: '/posts' },
-  { name: 'About', path: '/about' },
-]
-</script>

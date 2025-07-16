@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import TrendsView from '@/views/TrendsView.vue'
 import PostsView from '@/views/PostsView.vue'
 import TagsView from '@/views/TagsView.vue'
+import TagItemView from '@/views/TagItemView.vue'
 import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/tags',
       name: 'tags',
       component: TagsView,
+    },
+    {
+      path: '/tags/:tag',
+      name: 'tagDetails',
+      component: TagItemView,
     },
     {
       path: '/about',

@@ -1,6 +1,6 @@
 <script setup>
 import MainNav from '@/components/MainNav.vue'
-import TagsViewContent from '@/components/TagsViewContent.vue'
+import TagItemViewContent from '@/components/TagItemViewContent.vue'
 </script>
 
 <template>
@@ -8,6 +8,6 @@ import TagsViewContent from '@/components/TagsViewContent.vue'
     <img src="/logo.png" alt="HackerNews logo" class="logo w-[80px] sm:w-[120px] md:w-[160px]" />
     <MainNav />
 
-    <TagsViewContent />
+    <TagItemViewContent />
   </main>
 </template>

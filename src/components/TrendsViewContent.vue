@@ -81,10 +81,7 @@ const renderChart = () => {
           const elementIndex = elements[0].index
           const selectedTag = tags.value[elementIndex]
 
-          router.push({
-            name: 'tags',
-            query: { tag: selectedTag.tag },
-          })
+          router.push(`/tags/${selectedTag.tag}`)
         }
       },
       onHover: (event, elements) => {
