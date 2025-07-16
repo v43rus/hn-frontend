@@ -32,3 +32,12 @@ main {
   z-index: 1;
   padding: 2rem;
 }
+
+h1,
+a {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+p {
+  font-family: 'Fira Code', monospace;
+}
