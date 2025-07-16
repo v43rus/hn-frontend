@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import './matrixRain';
 @import './glitch';
+@import './hackerButtons';
 
 * {
   margin: 0;
