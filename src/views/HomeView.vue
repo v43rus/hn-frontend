@@ -5,7 +5,7 @@ import HomeViewContent from '@/components/HomeViewContent.vue'
 
 <template>
   <main>
-    <img src="/logo.png" alt="HackerNews logo" class="w-[80px] sm:w-[120px] md:w-[160px]" />
+    <img src="/logo.png" alt="HackerNews logo" class="logo w-[80px] sm:w-[120px] md:w-[160px]" />
     <MainNav />
 
     <HomeViewContent />
