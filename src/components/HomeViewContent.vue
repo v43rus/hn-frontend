@@ -22,6 +22,11 @@
       and data visualization capabilities.
     </p>
 
+    <p class="block mt-2! text-sm md:hidden text-red-500">
+      Quick Note For Mobile Users: to view separate data points hold down and use scroll instead of
+      a quick push which chooses a specific tag.
+    </p>
+
     <p class="text-green-400 text-sm mt-4!">
       Tech stack: Vue 3 • Tailwind CSS • Flask • PostgreSQL • GitHub Actions • Chart.js
     </p>
