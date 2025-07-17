@@ -10,7 +10,11 @@ export const fetchTagHistory = async (tag) => {
   return response.data
 }
 
-export const fetchTopPostsByTagAndPeriod = async (tag, period = '7d') => {
-  const response = await apiClient.get(`/posts/top/${tag}/${period}`)
+export const fetchTopPostsByTagAndPeriod = async (tag, period = '7d', page = 1, perPage = 9) => {
+  const params = new URLSearchParams({
+    page: page.toString(),
+    per_page: perPage.toString(),
+  })
+  const response = await apiClient.get(`/posts/top/${tag}/${period}?${params}`)
   return response.data
 }
