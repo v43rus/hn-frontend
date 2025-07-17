@@ -101,7 +101,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="w-full max-w-5xl mx-auto p-6! bg-black/70 border border-green-500 rounded-md shadow-lg text-white text-center space-y-4"
+    class="w-full max-w-6xl mx-auto p-6! bg-black/70 border border-green-500 rounded-md shadow-lg text-white text-center space-y-4!"
   >
     <div class="text-center space-y-4">
       <h1 class="text-2xl md:text-3xl font-bold text-green-400">HackerNews Posts</h1>
@@ -171,7 +171,7 @@ onMounted(() => {
     </div>
 
     <!-- Posts Grid -->
-    <div v-else class="space-y-2!">
+    <div v-else>
       <!-- Posts Info -->
       <div class="text-center text-green-400/70 text-sm font-mono">
         <span v-if="pagination.total_posts">

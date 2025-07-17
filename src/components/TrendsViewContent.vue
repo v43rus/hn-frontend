@@ -110,7 +110,7 @@ watch(selectedPeriod, loadTags)
 
 <template>
   <div
-    class="w-full max-w-5xl mx-auto p-6! bg-black/70 border border-green-500 rounded-md shadow-lg text-white text-center"
+    class="w-full max-w-6xl mx-auto p-6! bg-black/70 border border-green-500 rounded-md shadow-lg text-white text-center space-y-4!"
   >
     <h1 class="text-2xl md:text-3xl font-bold text-green-400">Trending Tags</h1>
 
@@ -118,9 +118,9 @@ watch(selectedPeriod, loadTags)
       <button
         v-for="period in PERIODS"
         :key="period.value"
-        @click="selectedPeriod = period"
+        @click="selectedPeriod = period.value"
         class="hacker-button relative px-4 py-2 font-mono text-sm uppercase tracking-wider transition-all duration-200 transform"
-        :class="selectedPeriod === period ? 'hacker-button-active' : 'hacker-button-inactive'"
+        :class="selectedPeriod === period.value ? 'hacker-button-active' : 'hacker-button-inactive'"
       >
         <span class="relative z-10">{{ period.label }}</span>
       </button>
