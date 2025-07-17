@@ -1,9 +1,9 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { TECH_TAGS, TAG_COLORS } from '@/constants/tags'
 import { Chart, registerables } from 'chart.js'
-import { fetchTagHistory } from '@/services/trendService'
+import { fetchTagHistory, fetchPopularTags } from '@/services/trendService'
 import 'chartjs-adapter-date-fns'
 
 Chart.register(...registerables)
@@ -13,7 +13,37 @@ const selectedTags = ref([])
 const chartRef = ref(null)
 const tagDataCache = ref({})
 const loadingTags = ref(new Set())
+const isInitializing = ref(false)
 let tagChart = null
+
+const initializePopularTags = async () => {
+  try {
+    isInitializing.value = true
+    const popularTags = await fetchPopularTags('1w')
+
+    // Filter to only include tags that are in our TECH_TAGS list and get top 3
+    const topTrendingTags = popularTags
+      .filter((tagData) => TECH_TAGS.includes(tagData.tag))
+      .slice(0, 3)
+      .map((tagData) => tagData.tag)
+
+    selectedTags.value = topTrendingTags
+
+    // Fetch data for each selected tag
+    const tagDataPromises = topTrendingTags.map((tag) => getTagHistory(tag))
+    await Promise.all(tagDataPromises)
+
+    isInitializing.value = false
+
+    await nextTick() // Ensure DOM updates before rendering chart
+
+    renderChart()
+  } catch (error) {
+    console.error('Failed to initialize popular tags:', error)
+  } finally {
+    isInitializing.value = false
+  }
+}
 
 const getTagHistory = async (tag) => {
   // Check if data is already cached
@@ -174,7 +204,7 @@ const renderChart = () => {
 watch(selectedTags, renderChart, { deep: true })
 
 onMounted(() => {
-  renderChart()
+  initializePopularTags()
 })
 </script>
 
@@ -197,11 +227,11 @@ onMounted(() => {
           v-for="tag in TECH_TAGS"
           :key="tag"
           @click="toggleTag(tag)"
-          :disabled="loadingTags.has(tag)"
+          :disabled="loadingTags.has(tag) || isInitializing"
           class="hacker-button relative px-3 py-1 font-mono text-xs uppercase tracking-wider transition-all duration-200 transform"
           :class="[
             selectedTags.includes(tag) ? 'hacker-button-active' : 'hacker-button-inactive',
-            loadingTags.has(tag) ? 'opacity-50 cursor-not-allowed' : '',
+            loadingTags.has(tag) || isInitializing ? 'opacity-50 cursor-not-allowed' : '',
           ]"
         >
           <span class="relative z-10">
@@ -220,8 +250,14 @@ onMounted(() => {
 
     <!-- Chart Container -->
     <div class="relative w-full h-[400px] bg-black/30 border border-green-500/30 rounded-md p-4">
-      <div v-if="selectedTags.length === 0" class="flex items-center justify-center h-full">
+      <div
+        v-if="selectedTags.length === 0 && !isInitializing"
+        class="flex items-center justify-center h-full"
+      >
         <p class="text-green-400/70 text-lg">Select one or more tags to compare their trends</p>
+      </div>
+      <div v-else-if="isInitializing" class="flex items-center justify-center h-full">
+        <p class="text-green-400/70 text-lg">Loading trending tags...</p>
       </div>
       <canvas v-else ref="chartRef"></canvas>
     </div>
