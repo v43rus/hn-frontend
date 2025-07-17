@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { TECH_TAGS } from '@/constants/tags'
+import { PERIODS } from '@/constants/periods'
 import { fetchTopPostsByTagAndPeriod } from '@/services/trendService'
 
 const selectedTag = ref('')
@@ -11,14 +12,6 @@ const isLoading = ref(false)
 const error = ref('')
 const currentPage = ref(1)
 const postsPerPage = 9
-
-const periods = [
-  { value: '1d', label: '1D' },
-  { value: '3d', label: '3D' },
-  { value: '1w', label: '1W' },
-  { value: '2w', label: '2W' },
-  { value: '1m', label: '1M' },
-]
 
 const sortedTags = computed(() => {
   return [...TECH_TAGS].sort()
@@ -139,7 +132,7 @@ onMounted(() => {
         <h3 class="text-green-400 font-bold text-sm">Time Period:</h3>
         <div class="flex flex-wrap justify-center gap-2">
           <button
-            v-for="period in periods"
+            v-for="period in PERIODS"
             :key="period.value"
             @click="selectPeriod(period.value)"
             :disabled="isLoading"

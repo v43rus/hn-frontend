@@ -1,13 +1,13 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { PERIODS } from '@/constants/periods'
 import { fetchPopularTags } from '@/services/trendService'
 import { Chart, registerables } from 'chart.js'
 
 Chart.register(...registerables)
 
 const router = useRouter()
-const periods = ['1d', '3d', '1w', '2w', '1m']
 const selectedPeriod = ref('3d')
 const tags = ref([])
 const chartRef = ref(null)
@@ -116,13 +116,13 @@ watch(selectedPeriod, loadTags)
 
     <div class="flex m-2! justify-center gap-3 flex-wrap mb-6">
       <button
-        v-for="period in periods"
-        :key="period"
+        v-for="period in PERIODS"
+        :key="period.value"
         @click="selectedPeriod = period"
         class="hacker-button relative px-4 py-2 font-mono text-sm uppercase tracking-wider transition-all duration-200 transform"
         :class="selectedPeriod === period ? 'hacker-button-active' : 'hacker-button-inactive'"
       >
-        <span class="relative z-10">{{ period }}</span>
+        <span class="relative z-10">{{ period.label }}</span>
       </button>
     </div>
 
