@@ -101,7 +101,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="w-full max-w-6xl mx-auto p-6! bg-black/70 border border-green-500 rounded-md shadow-lg text-white text-center space-y-4!"
+    class="w-full max-w-6xl mx-auto p-6 bg-black/70 border border-green-500 rounded-md shadow-lg text-white text-center space-y-4"
   >
     <div class="text-center space-y-4">
       <h1 class="text-2xl md:text-3xl font-bold text-green-400">HackerNews Posts</h1>
@@ -112,7 +112,7 @@ onMounted(() => {
     </div>
 
     <!-- Controls -->
-    <div class="space-y-2! mt-2!">
+    <div class="space-y-2 mt-2">
       <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
         <label class="text-green-400 font-bold text-sm">Select Tag:</label>
         <select
@@ -128,7 +128,7 @@ onMounted(() => {
       </div>
 
       <!-- Period Selection -->
-      <div class="text-center space-y-2!">
+      <div class="text-center space-y-2">
         <h3 class="text-green-400 font-bold text-sm">Time Period:</h3>
         <div class="flex flex-wrap justify-center gap-2">
           <button
@@ -149,22 +149,22 @@ onMounted(() => {
     </div>
 
     <!-- Loading State -->
-    <div v-if="isLoading" class="text-center py-8 mt-4!">
+    <div v-if="isLoading" class="text-center py-8 mt-4">
       <p class="text-green-400/70 text-lg">Loading posts...</p>
     </div>
 
     <!-- Error State -->
-    <div v-else-if="error" class="text-center py-8 mt-4!">
+    <div v-else-if="error" class="text-center py-8 mt-4">
       <p class="text-red-400 text-lg">{{ error }}</p>
     </div>
 
     <!-- Empty State -->
-    <div v-else-if="!selectedTag" class="text-center py-8 mt-4!">
+    <div v-else-if="!selectedTag" class="text-center py-8 mt-4">
       <p class="text-green-400/70 text-lg">Select a tag to view posts</p>
     </div>
 
     <!-- No Posts State -->
-    <div v-else-if="posts.length === 0" class="text-center py-8 mt-4!">
+    <div v-else-if="posts.length === 0" class="text-center py-8 mt-4">
       <p class="text-green-400/70 text-lg">
         No posts found for "{{ selectedTag }}" in the last {{ selectedPeriod }}
       </p>
@@ -186,7 +186,7 @@ onMounted(() => {
         <article
           v-for="post in posts"
           :key="post.id"
-          class="bg-black/50 border border-green-500/50 rounded-md p-2! hover:border-green-400 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/20"
+          class="bg-black/50 border border-green-500/50 rounded-md p-2 hover:border-green-400 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/20"
         >
           <!-- Post Header -->
           <div class="space-y-2 mb-3">
@@ -233,7 +233,7 @@ onMounted(() => {
       </div>
 
       <!-- Pagination -->
-      <div v-if="pagination.total_pages > 1" class="flex justify-center items-center gap-2 mt-8!">
+      <div v-if="pagination.total_pages > 1" class="flex justify-center items-center gap-2 mt-8">
         <!-- Previous Button -->
         <button
           @click="prevPage"
@@ -282,3 +282,4 @@ onMounted(() => {
     </div>
   </div>
 </template>
+

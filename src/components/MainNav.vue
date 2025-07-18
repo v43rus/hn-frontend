@@ -13,9 +13,9 @@ const navLinks = [
 </script>
 
 <template>
-  <nav class="w-full max-w-5xl m-2! bg-black/70 border border-green-500 rounded-md shadow-lg">
-    <ul class="justify-between md:justify-between items-center px-6 py-4 text-sm md:text-base">
-      <div class="flex p-2! gap-4 flex-wrap justify-evenly">
+  <nav class="w-full max-w-5xl m-2 bg-black/70 border border-green-500 rounded-md shadow-lg">
+    <ul class="justify-between md:justify-between items-center p-2 text-sm md:text-base">
+      <div class="flex p-2 gap-4 flex-wrap justify-evenly">
         <li v-for="link in navLinks" :key="link.name">
           <router-link
             :to="link.path"
